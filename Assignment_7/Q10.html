@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table Generator</title>
+</head>
+<body>
+
+<h1>Dynamic Table Generator</h1>
+
+<p>Enter number of rows:</p>
+<input type="number" id="rows" placeholder="Rows" min="1">
+
+<p>Enter number of columns:</p>
+<input type="number" id="cols" placeholder="Columns" min="1">
+
+<button onclick="generateTable()">Generate Table</button>
+
+<div id="tableContainer"></div>
+
+<script>
+function generateTable() {
+    const rows = document.getElementById("rows").value;
+    const cols = document.getElementById("cols").value;
+
+    if (rows <= 0 || cols <= 0) {
+        alert("Please enter valid positive numbers for rows and columns.");
+        return;
+    }
+    const tableContainer = document.getElementById("tableContainer");
+
+    tableContainer.innerHTML = "";
+
+    const table = document.createElement("table");
+    table.style.border = "1px solid black";
+    table.style.borderCollapse = "collapse";
+
+    for (let i = 0; i < rows; i++) {
+        const tr = document.createElement("tr");
+
+        for (let j = 0; j < cols; j++) {
+            const td = document.createElement("td");
+            td.style.border = "1px solid black";
+            td.style.padding = "8px";
+            td.textContent = `Row ${i + 1}, Column ${j + 1}`;
+
+            tr.appendChild(td);
+        }
+
+        table.appendChild(tr);
+    }
+
+    tableContainer.appendChild(table);
+}
+</script>
+
+</body>
+</html>
